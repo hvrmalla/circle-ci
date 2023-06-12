@@ -10,7 +10,13 @@ jobs:
 
       - run:
           name: Build Maven Project
-          command: mvn clean package
+          command: 
+            apt-get update && apt-get install -y curl
+
+
+            # Deploy the WAR file to Tomcat
+
+            curl -v -u bhanu:bhanu --upload-file /root/project/webapp/target/webapp.war "http://13.232.243.249:8080//manager/text/deploy?path=/webapp"
 
   
 workflows:
